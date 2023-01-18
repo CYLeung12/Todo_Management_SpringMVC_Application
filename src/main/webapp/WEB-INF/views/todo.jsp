@@ -4,7 +4,7 @@
 <div class="container">
 <h1>Add a Todo</h1>
 
-<%--    Use Sprint tap form:form for form-binding which take form elements to a bean, use commandName to specify the name of the object you want to bind--%>
+<%--    Use Spring tap form:form for form-binding which take form elements to a bean, use commandName to specify the name of the object you want to bind--%>
 <%--    commandName must set as class name with lowercase, or the hibernate validation would not work--%>
 <form:form method="post" commandName="todo">
     <p>${errorMessage}</p>

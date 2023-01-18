@@ -8,8 +8,7 @@
 <html>
 <head>
     <title>Welcome</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="/webjars/bootstrap/5.2.3/css/bootstrap.min.css" rel="stylesheet">
-
 </head>
-
 <body>
