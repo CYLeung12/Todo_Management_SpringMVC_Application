@@ -1,0 +1,51 @@
+<!-- webapp/WEB-INF/web.xml -->
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         version="3.0">
+
+    <display-name>To do List</display-name>
+
+    <welcome-file-list>
+        <welcome-file>login.do</welcome-file>
+    </welcome-file-list>
+
+<!--    DispatcherServlet can be considered as a front controller    -->
+    <servlet>
+        <servlet-name>dispatcher</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>/WEB-INF/todo-servlet.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>dispatcher</servlet-name>
+        <!--    All requests sent from URL "/spring-mvc/*" go to DispatcherServlet first and the DispatcherServlet will look at controllers and identify the right controller which match the URL e.g.login in case of /spring-mvc/login-->
+<!--        <url-pattern>/spring-mvc/*</url-pattern>-->
+
+        <!--    All requests sent go to DispatcherServlet first and the DispatcherServlet will look at controllers and identify the right controller which match the URL e.g.login in case of /spring-mvc/login-->
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+<!--Execute Spring Security first before controller requests go to DispatcherServlet-->
+    <filter>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+<!--    When error happens in jsp page, the exception handling code will not be working, this piece of code is to redirect to the error page when jsp has error.-->
+    <error-page>
+        <location>/WEB-INF/views/error.jsp</location>
+    </error-page>
+
+
+
+
+</web-app>
